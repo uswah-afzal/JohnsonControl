@@ -110,8 +110,8 @@ export default function ProductsPage() {
       </section>
 
       {/* Category Tabs Filter */}
-      <section className="py-8 bg-[#041221] border-b border-white/10 sticky top-[76px] z-40 backdrop-blur-lg">
-        <div className="container-wide flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
+      <section className="py-4 bg-[#041221]/95 border-b border-white/10 sticky top-[60px] z-40 backdrop-blur-xl transition-all duration-300 shadow-md">
+        <div className="container-wide flex items-center gap-3 overflow-x-auto pb-1.5 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -125,7 +125,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Product Grid */}
-      <section className="py-16">
+      <section className="py-12 relative z-10">
         <div className="container-wide">
           <div className="flex justify-between items-center mb-8">
             <span className="text-sm text-white/60">
