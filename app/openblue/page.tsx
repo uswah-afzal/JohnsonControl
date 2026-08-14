@@ -1,156 +1,244 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Activity, Zap, Shield, Cpu, Play, Pause, AlertCircle, ArrowUpRight } from 'lucide-react'
+import { 
+  Cpu, 
+  ShieldCheck, 
+  Zap, 
+  Activity, 
+  Cloud, 
+  Lock, 
+  BarChart3, 
+  ArrowRight, 
+  CheckCircle2,
+  Sparkles,
+  Terminal
+} from 'lucide-react'
 
-export default function OpenBluePage() {
-  const [isSimulating, setIsSimulating] = useState(true)
+export default function LightOpenBluePage() {
+  const [activeMetric, setActiveMetric] = useState('energy')
+  const [logStream, setLogStream] = useState<string[]>([
+    '[SYSTEM INIT] OpenBlue™ AI Operating System online',
+    '[TELEMETRY] Sensor node #482 reporting chilled water temp 6.2°C',
+    '[OPTIMIZATION] Autonomous setpoint modulation active (-14.2 kW load shift)',
+    '[CYBER] ISO 27001 encrypted packet verification: 100% secure'
+  ])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const logs = [
+        `[AI MODEL] Predictive thermal load updated for +${Math.floor(Math.random() * 5 + 1)}°C ambient rise`,
+        `[IAQ] Dynamic ventilation boost activated in Zone B (CO2 < 450 ppm)`,
+        `[ENERGY] Battery storage dispatching 120 kWh during peak tariff window`,
+        `[SECURITY] Biometric access credential verified at Main Terminal`
+      ]
+      const randomLog = logs[Math.floor(Math.random() * logs.length)]
+      setLogStream((prev) => [randomLog, ...prev.slice(0, 3)])
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <div className="min-h-screen bg-[#030e1a] text-white">
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-[#09253d] to-[#030e1a] border-b border-white/10">
-        <div className="container-wide relative z-10">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">INTELLIGENT BUILDING OPERATING SYSTEM</span>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white mt-3 mb-4 leading-tight">
-            Johnson Controls OpenBlue™ Platform
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
-            Applying data from both inside buildings and beyond to manage operations systemically with predictive AI and autonomous equipment control.
+      {/* Hero Header (Light Design) */}
+      <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
+        <div className="container-wide">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-4 border border-[#0066cc]/20">
+              <Sparkles size={14} />
+              INTELLIGENT BUILDING OPERATING SYSTEM
+            </span>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
+              Johnson Controls OpenBlue™ Platform.
+            </h1>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8">
+              Applying data from both inside buildings and beyond to manage operations systemically with predictive AI and autonomous equipment control.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Live Telemetry Command Simulator Section */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
+        <div className="container-wide">
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <span className="text-xs font-bold text-[#0066cc] uppercase tracking-wider block mb-1">LIVE COMMAND SIMULATOR</span>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a]">OpenBlue™ Autonomous Operations Center</h2>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+                <span>100% Operational</span>
+              </div>
+            </div>
+
+            {/* Metrics Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <div 
+                onClick={() => setActiveMetric('energy')}
+                className={`p-6 rounded-2xl border transition-all cursor-pointer ${
+                  activeMetric === 'energy' 
+                    ? 'bg-slate-50 border-[#0066cc] shadow-sm' 
+                    : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <Zap className="w-6 h-6 text-[#0066cc] mb-2" />
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">AI Energy Savings</span>
+                <strong className="text-3xl font-extrabold text-[#0f172a]">38.4%</strong>
+                <span className="text-xs text-emerald-600 font-bold block mt-1">↑ Real-time reduction</span>
+              </div>
+
+              <div 
+                onClick={() => setActiveMetric('iaq')}
+                className={`p-6 rounded-2xl border transition-all cursor-pointer ${
+                  activeMetric === 'iaq' 
+                    ? 'bg-slate-50 border-[#0066cc] shadow-sm' 
+                    : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <Activity className="w-6 h-6 text-[#0066cc] mb-2" />
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Indoor Air Quality</span>
+                <strong className="text-3xl font-extrabold text-[#0f172a]">98/100</strong>
+                <span className="text-xs text-emerald-600 font-bold block mt-1">Clean air index optimal</span>
+              </div>
+
+              <div 
+                onClick={() => setActiveMetric('cyber')}
+                className={`p-6 rounded-2xl border transition-all cursor-pointer ${
+                  activeMetric === 'cyber' 
+                    ? 'bg-slate-50 border-[#0066cc] shadow-sm' 
+                    : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <ShieldCheck className="w-6 h-6 text-[#0066cc] mb-2" />
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Cyber Shield</span>
+                <strong className="text-3xl font-extrabold text-[#0f172a]">Active</strong>
+                <span className="text-xs text-slate-500 font-bold block mt-1">ISO 27001 Encrypted</span>
+              </div>
+
+              <div 
+                onClick={() => setActiveMetric('carbon')}
+                className={`p-6 rounded-2xl border transition-all cursor-pointer ${
+                  activeMetric === 'carbon' 
+                    ? 'bg-slate-50 border-[#0066cc] shadow-sm' 
+                    : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}
+              >
+                <Cloud className="w-6 h-6 text-[#0066cc] mb-2" />
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">Scope 1 & 2 CO2</span>
+                <strong className="text-3xl font-extrabold text-[#0f172a]">-1,420t</strong>
+                <span className="text-xs text-emerald-600 font-bold block mt-1">Avoided YTD</span>
+              </div>
+            </div>
+
+            {/* Dark Telemetry Terminal Box */}
+            <div className="bg-[#0f172a] border border-slate-800 rounded-2xl p-6 text-emerald-400 font-mono text-xs space-y-2 shadow-inner">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-slate-400 text-[11px]">
+                <span className="flex items-center gap-2 font-bold">
+                  <Terminal size={14} className="text-[#0066cc]" /> OpenBlue™ AI Stream Log
+                </span>
+                <span>Port 8443 / TLS 1.3</span>
+              </div>
+              {logStream.map((log, idx) => (
+                <p key={idx} className="leading-relaxed animate-in fade-in duration-300">
+                  {log}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OpenBlue Four Pillars */}
+      <section className="py-20 bg-[#f8fafc]">
+        <div className="container-wide">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">PLATFORM CAPABILITIES</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0f172a] mt-2 mb-4">The Four Pillars of OpenBlue™</h2>
+            <p className="text-slate-600 text-sm">Empowering facility directors with autonomous AI intelligence.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm">
+              <span className="p-3 bg-slate-100 text-[#0066cc] rounded-2xl inline-block mb-4 border border-slate-200">
+                <Zap size={22} />
+              </span>
+              <h3 className="text-2xl font-extrabold text-[#0f172a] mb-2">OpenBlue™ Energy Advisor</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Continuously analyzes building energy profiles against outdoor weather forecasts and utility rate schedules to dynamically optimize equipment staging.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#0066cc]">
+                <CheckCircle2 size={14} /> 30%+ Carbon Reduction Guaranteed
+              </div>
+            </div>
+
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm">
+              <span className="p-3 bg-slate-100 text-[#0066cc] rounded-2xl inline-block mb-4 border border-slate-200">
+                <Activity size={22} />
+              </span>
+              <h3 className="text-2xl font-extrabold text-[#0f172a] mb-2">OpenBlue™ Healthy Buildings</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Combines IAQ sensor readings with intelligent ventilation control to maintain clean airflow, optimal humidity, and occupant wellness.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#0066cc]">
+                <CheckCircle2 size={14} /> WELL and RESET Certified Standard
+              </div>
+            </div>
+
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm">
+              <span className="p-3 bg-slate-100 text-[#0066cc] rounded-2xl inline-block mb-4 border border-slate-200">
+                <ShieldCheck size={22} />
+              </span>
+              <h3 className="text-2xl font-extrabold text-[#0f172a] mb-2">OpenBlue™ Cyber Shield</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Built from the ground up with zero-trust architecture, encrypted device authentication, and automated security patch management.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#0066cc]">
+                <CheckCircle2 size={14} /> FedRAMP and ISO 27001 Accredited
+              </div>
+            </div>
+
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm">
+              <span className="p-3 bg-slate-100 text-[#0066cc] rounded-2xl inline-block mb-4 border border-slate-200">
+                <Cpu size={22} />
+              </span>
+              <h3 className="text-2xl font-extrabold text-[#0f172a] mb-2">OpenBlue™ Performance Manager</h3>
+              <p className="text-slate-600 text-sm leading-relaxed mb-4">
+                Single pane of glass enterprise dashboard connecting multi-campus HVAC, fire protection, security, and facility maintenance workflows.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#0066cc]">
+                <CheckCircle2 size={14} /> Unified Multi-Site Synchronisation
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Bottom Section */}
+      <section className="py-16 bg-white border-t border-slate-200">
+        <div className="container-wide text-center max-w-3xl mx-auto">
+          <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">DEPLOYMENT READINESS</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] mt-2 mb-4">
+            Connect Your Building to OpenBlue™ AI Today
+          </h2>
+          <p className="text-slate-600 text-sm mb-8 leading-relaxed">
+            Our digital engineers will audit your existing facility management infrastructure and deploy OpenBlue™ with zero downtime.
           </p>
-        </div>
-      </section>
-
-      {/* OpenBlue Command Center Simulator */}
-      <section className="py-16 bg-[#041221] border-b border-white/10">
-        <div className="container-wide">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <span className="text-xs font-bold tracking-wider text-aqua uppercase">LIVE TELEMETRY SIMULATOR</span>
-              <h2 className="text-2xl font-extrabold text-white">OpenBlue™ Intelligent Command Center</h2>
-            </div>
-            <button
-              onClick={() => setIsSimulating(!isSimulating)}
-              className="button button-navy text-xs px-4 py-2 flex items-center gap-2"
-            >
-              {isSimulating ? <Pause size={14} /> : <Play size={14} />}
-              <span>{isSimulating ? 'Pause Live Stream' : 'Resume Live Stream'}</span>
-            </button>
-          </div>
-
-          {/* Interactive Command Widgets */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs text-white/60 uppercase font-semibold">AI Energy Savings</span>
-                <Zap className="text-aqua w-5 h-5" />
-              </div>
-              <strong className="text-3xl font-extrabold text-white block mb-1">38.4%</strong>
-              <span className="text-[11px] text-aqua font-semibold">↑ 4.2% optimized vs baseline</span>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs text-white/60 uppercase font-semibold">Indoor Air Quality (IAQ)</span>
-                <Activity className="text-aqua w-5 h-5" />
-              </div>
-              <strong className="text-3xl font-extrabold text-white block mb-1">98 / 100</strong>
-              <span className="text-[11px] text-aqua font-semibold">Optimal Airflow & Filtration</span>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs text-white/60 uppercase font-semibold">Cyber Security Status</span>
-                <Shield className="text-aqua w-5 h-5" />
-              </div>
-              <strong className="text-3xl font-extrabold text-white block mb-1">SECURED</strong>
-              <span className="text-[11px] text-white/70">FedRAMP & ISO 27001 Active</span>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-xs text-white/60 uppercase font-semibold">Predictive Health</span>
-                <Cpu className="text-aqua w-5 h-5" />
-              </div>
-              <strong className="text-3xl font-extrabold text-white block mb-1">99.99%</strong>
-              <span className="text-[11px] text-aqua font-semibold">0 Critical Faults Detected</span>
-            </div>
-          </div>
-
-          {/* Alert Telemetry Feed */}
-          <div className="bg-[#030e1a] border border-white/10 p-6 rounded-xl">
-            <div className="flex items-center gap-2 mb-4">
-              <AlertCircle size={16} className="text-aqua" />
-              <span className="text-xs font-bold text-white uppercase tracking-wider">Real-time Predictive Analytics Log</span>
-            </div>
-            <div className="space-y-2 text-xs font-mono text-white/80">
-              <div className="p-2 bg-white/5 rounded border border-white/10 flex justify-between">
-                <span>[10:42:01 AM] YORK® Chiller #3: Variable speed drive optimized for peak outdoor ambient temperature.</span>
-                <span className="text-aqua">PASS</span>
-              </div>
-              <div className="p-2 bg-white/5 rounded border border-white/10 flex justify-between">
-                <span>[10:41:45 AM] Metasys® BMS: Automated static pressure reset triggered in Zone 4 B-Tower.</span>
-                <span className="text-aqua">OPTIMIZED</span>
-              </div>
-              <div className="p-2 bg-white/5 rounded border border-white/10 flex justify-between">
-                <span>[10:40:12 AM] OpenBlue™ IAQ: Outdoor damper position adjusted to optimize natural economizer cooling.</span>
-                <span className="text-aqua">ACTIVE</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Four Pillars Section */}
-      <section className="py-20 bg-[#030e1a]">
-        <div className="container-wide">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold tracking-widest text-aqua uppercase">OPENBLUE ARCHITECTURE</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-3">The Four OpenBlue™ Pillars</h2>
-            <p className="text-white/70 text-sm">Systemic integration connecting HVAC, fire, security, and energy management.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-[#06192d] border border-white/15 rounded-xl hover:border-aqua transition-colors">
-              <span className="text-xs font-bold text-aqua uppercase tracking-wider block mb-2">Pillar 01</span>
-              <h3 className="text-lg font-bold text-white mb-2">Thermal Management</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">Precision chiller & boiler control for zero energy waste.</p>
-              <Link href="/products-and-services" className="text-xs text-aqua font-semibold flex items-center gap-1">
-                View Thermal Equipment <ArrowUpRight size={14} />
-              </Link>
-            </div>
-
-            <div className="p-6 bg-[#06192d] border border-white/15 rounded-xl hover:border-aqua transition-colors">
-              <span className="text-xs font-bold text-aqua uppercase tracking-wider block mb-2">Pillar 02</span>
-              <h3 className="text-lg font-bold text-white mb-2">Mission Critical</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">Uninterrupted power & cooling for data centers & surgical suites.</p>
-              <Link href="/industries" className="text-xs text-aqua font-semibold flex items-center gap-1">
-                View Mission Critical <ArrowUpRight size={14} />
-              </Link>
-            </div>
-
-            <div className="p-6 bg-[#06192d] border border-white/15 rounded-xl hover:border-aqua transition-colors">
-              <span className="text-xs font-bold text-aqua uppercase tracking-wider block mb-2">Pillar 03</span>
-              <h3 className="text-lg font-bold text-white mb-2">Energy Efficiency</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">Continuous cloud algorithms eliminating peak utility surcharges.</p>
-              <Link href="/solutions" className="text-xs text-aqua font-semibold flex items-center gap-1">
-                View Efficiency ROI <ArrowUpRight size={14} />
-              </Link>
-            </div>
-
-            <div className="p-6 bg-[#06192d] border border-white/15 rounded-xl hover:border-aqua transition-colors">
-              <span className="text-xs font-bold text-aqua uppercase tracking-wider block mb-2">Pillar 04</span>
-              <h3 className="text-lg font-bold text-white mb-2">Decarbonization</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">Turnkey Scope 1 and Scope 2 carbon reduction management.</p>
-              <Link href="/solutions" className="text-xs text-aqua font-semibold flex items-center gap-1">
-                View Decarbonization <ArrowUpRight size={14} />
-              </Link>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="button button-primary px-8 py-3.5 text-xs">
+              Request Platform Demo
+            </Link>
+            <Link href="/solutions" className="button button-navy px-8 py-3.5 text-xs flex items-center gap-2">
+              <span>Explore Net-Zero Solutions</span>
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>

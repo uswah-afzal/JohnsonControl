@@ -5,126 +5,128 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import CircularOrbit from '@/components/CircularOrbit'
 import Link from 'next/link'
-import { Server, Activity, GraduationCap, Building2, Factory, ShieldCheck } from 'lucide-react'
+import { Server, Activity, GraduationCap, Building2, Factory, ShieldCheck, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react'
 
-export default function IndustriesPage() {
+const industryCards = [
+  {
+    id: 'data-center-detail',
+    icon: <Server className="w-6 h-6 text-[#0066cc]" />,
+    title: 'Data Centers & Hyperscale AI',
+    desc: 'Precision liquid cooling, York® magnetic chillers, and 99.999% uptime compliance for mission critical data halls.',
+    specs: ['PUE < 1.15', 'Zero Vibration', 'Liquid Cooling Native']
+  },
+  {
+    id: 'healthcare-detail',
+    icon: <Activity className="w-6 h-6 text-[#0066cc]" />,
+    title: 'Healthcare & Operating Rooms',
+    desc: 'Cleanroom negative pressure isolation, HEPA airflow control, and real-time medical asset monitoring.',
+    specs: ['100% Isolation', 'ASHRAE 170 Compliant', 'Real-time Tracking']
+  },
+  {
+    id: 'education-detail',
+    icon: <GraduationCap className="w-6 h-6 text-[#0066cc]" />,
+    title: 'K-12 & Higher Education Campuses',
+    desc: 'Indoor air quality (IAQ) monitoring, smart campus security integration, and guaranteed energy performance contracts.',
+    specs: ['35% Cost Savings', 'RESET IAQ Standard', 'Campus Security']
+  },
+  {
+    id: 'commercial-detail',
+    icon: <Building2 className="w-6 h-6 text-[#0066cc]" />,
+    title: 'Commercial Real Estate Towers',
+    desc: 'Transforming legacy office towers into autonomous net-zero workplaces with adaptive HVAC and mobile tenant access.',
+    specs: ['Net-Zero Certified', 'Mobile Access', 'Touchless Controls']
+  },
+  {
+    id: 'industrial-detail',
+    icon: <Factory className="w-6 h-6 text-[#0066cc]" />,
+    title: 'Industrial & Manufacturing Plants',
+    desc: 'Heavy-duty industrial refrigeration, process cooling, gas detection, and continuous manufacturing plant safety.',
+    specs: ['Process Refrigeration', 'Gas Detection', 'Peak Load Shifting']
+  },
+  {
+    id: 'government-detail',
+    icon: <ShieldCheck className="w-6 h-6 text-[#0066cc]" />,
+    title: 'Government & Defense Facilities',
+    desc: 'FedRAMP compliant smart building automation, resilient microgrids, and perimeter access control.',
+    specs: ['FedRAMP Accredited', 'ISO 27001 Certified', 'Microgrid Ready']
+  }
+]
+
+export default function LightIndustriesPage() {
   return (
-    <div className="min-h-screen bg-[#030e1a] text-white">
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-[#09253d] to-[#030e1a] border-b border-white/10">
-        <div className="container-wide relative z-10">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">TAILORED INDUSTRY SOLUTIONS</span>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white mt-3 mb-4 leading-tight">
-            Specialized Building Intelligence Across Industries
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
-            From zero-downtime data center cooling to surgical cleanroom isolation, Johnson Controls delivers specialized infrastructure for critical sectors.
-          </p>
-        </div>
-      </section>
-
-      {/* Interactive Circular Orbit Section */}
-      <section className="py-12 bg-[#041221] border-b border-white/10">
-        <div className="container-wide text-center mb-8">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">INTERACTIVE ORBIT MOTION</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2">Explore Industry Orbit</h2>
-          <p className="text-xs text-white/60 mt-1">Click or hover satellite nodes to view industry telemetry & compliance metrics</p>
-        </div>
-
-        <CircularOrbit />
-      </section>
-
-      {/* Industry Verticals Grid */}
-      <section className="py-20 bg-[#030e1a]">
+      {/* Hero Header (Light Theme) */}
+      <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
         <div className="container-wide">
-          <h2 className="text-3xl font-extrabold text-white mb-10 text-center">Industry Specific Infrastructure</h2>
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-4 border border-[#0066cc]/20">
+              <Sparkles size={14} />
+              TAILORED INDUSTRY SOLUTIONS
+            </span>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
+              Building Performance Where It Really Matters.
+            </h1>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8">
+              From mission-critical AI data centers to sterile operating rooms, Johnson Controls engineers specialized building environments for your industry’s strictest standards.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Circular Orbit Hub Section */}
+      <CircularOrbit />
+
+      {/* Industry Vertical Cards Grid */}
+      <section className="py-20 bg-[#f8fafc]">
+        <div className="container-wide">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">SPECIALIZED DOMAINS</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#0f172a] mt-2 mb-4">Tailored Industry Engineering</h2>
+            <p className="text-slate-600 text-sm">Select your facility domain to explore specialized equipment and compliance benchmarks.</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <Server className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Data Centers & Cloud AI</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                Hyperscale liquid cooling, York® centrifugal chillers, and zero-vibration magnetic bearing compressors designed for 99.999% uptime.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: 40% Reduction in PUE
+            {industryCards.map((ind) => (
+              <div key={ind.id} className="bg-white border border-slate-200/90 rounded-3xl p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+                <div className="p-3 bg-slate-100 rounded-2xl w-fit mb-4 border border-slate-200">
+                  {ind.icon}
+                </div>
+                <h3 className="text-xl font-bold text-[#0f172a] mb-2">{ind.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-6">{ind.desc}</p>
+                <div className="space-y-2 pt-4 border-t border-slate-100">
+                  {ind.specs.map((sp) => (
+                    <div key={sp} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 size={14} className="text-[#0066cc]" />
+                      <span>{sp}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                Consult Data Center Engineer →
-              </Link>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <Activity className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Healthcare & Hospitals</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                Isolation room pressure monitoring, HEPA air purification, and real-time medical equipment asset tracking.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: 100% Infection Isolation Compliance
-              </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                Consult Healthcare Specialist →
-              </Link>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <GraduationCap className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Higher Education & K-12</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                Smart campus access control, indoor air quality monitoring, and cash-positive performance contracting.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: 35% Utility Bill Reduction
-              </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                Explore Campus Solutions →
-              </Link>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <Building2 className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Commercial Real Estate</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                High-rise HVAC optimization, tenant mobile credentials, and automated ESG reporting for building owners.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: $2.8M+ Avg Annual Savings
-              </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                View Commercial Retrofits →
-              </Link>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <Factory className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Industrial Manufacturing</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                Heavy-duty process refrigeration, gas detection systems, and industrial plant safety management.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: 25% Peak Electrical Savings
-              </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                Consult Industrial Team →
-              </Link>
-            </div>
-
-            <div className="bg-[#06192d] border border-white/15 rounded-2xl p-8 hover:border-aqua transition-colors">
-              <ShieldCheck className="w-8 h-8 text-aqua mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Government & Defense</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-4">
-                FedRAMP security certified building automation, perimeter access control, and resilient microgrids.
-              </p>
-              <div className="text-xs font-bold text-aqua bg-aqua/10 p-2.5 rounded-lg mb-4">
-                Key Metric: ISO 27001 Certified Cyber Defense
-              </div>
-              <Link href="/contact" className="text-xs font-bold text-white hover:text-aqua flex items-center gap-1">
-                View Federal Contracts →
-              </Link>
-            </div>
+      {/* CTA Bottom Section */}
+      <section className="py-16 bg-white border-t border-slate-200">
+        <div className="container-wide text-center max-w-3xl mx-auto">
+          <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">INDUSTRY CONSULTATION</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] mt-2 mb-4">
+            Need Custom Facility Engineering?
+          </h2>
+          <p className="text-slate-600 text-sm mb-8 leading-relaxed">
+            Our domain experts work with facility directors worldwide to design compliant, zero-carbon building infrastructure.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="button button-primary px-8 py-3.5 text-xs">
+              Schedule Industry Consultation
+            </Link>
+            <Link href="/products-and-services" className="button button-navy px-8 py-3.5 text-xs flex items-center gap-2">
+              <span>View Product Catalog</span>
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>

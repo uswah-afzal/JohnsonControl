@@ -1,216 +1,169 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, ArrowUpRight, BookOpen, Newspaper, Award } from 'lucide-react'
+import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, BookOpen, Clock, Tag, Award } from 'lucide-react'
 
-const insightsData = [
+const insightsArticles = [
   {
-    id: 1,
-    category: 'Customer Story',
-    title: 'Dubai DEWA HQ: World’s Largest Net-Zero Government Building',
-    summary: 'Johnson Controls OpenBlue™ platform integrates 10,000+ smart sensors, delivering 100% renewable power balance and zero net carbon emissions.',
-    image: '/images/jci-insight.png',
-    date: 'August 2026',
-    readTime: '4 min read',
-    icon: <Award className="w-4 h-4 text-aqua" />
-  },
-  {
-    id: 2,
-    category: 'Whitepaper',
-    title: 'AI & Machine Learning in Commercial HVAC Optimization',
-    summary: 'How predictive algorithms eliminate peak electrical demand surcharges and cut chilled water plant energy usage by up to 40%.',
+    id: 'dewa-netzero',
+    category: 'Case Study',
+    title: 'Dubai DEWA HQ: Achieving 100% Net Zero Carbon Operations',
+    summary: 'How Johnson Controls integrated 10,000+ IoT sensors and OpenBlue™ AI to achieve zero net carbon footprint for the world’s largest government building.',
     image: '/images/jci-solutions.png',
-    date: 'July 2026',
     readTime: '6 min read',
-    icon: <BookOpen className="w-4 h-4 text-aqua" />
+    date: 'August 2026',
+    featured: true
   },
   {
-    id: 3,
-    category: 'Press Release',
-    title: 'Johnson Controls Named Leader in Smart Building IoT Platforms',
-    summary: 'Independent analyst firm recognizes OpenBlue™ Enterprise Manager for exceptional AI capabilities and FedRAMP security certification.',
+    id: 'datacenter-cooling',
+    category: 'Whitepaper',
+    title: 'Next-Generation Thermal Management for High-Density AI Data Halls',
+    summary: 'Exploring magnetic-bearing YORK® chillers and liquid cooling integration for ultra-efficient data center PUE scores under 1.15.',
     image: '/images/jci-hero.png',
-    date: 'June 2026',
-    readTime: '3 min read',
-    icon: <Newspaper className="w-4 h-4 text-aqua" />
+    readTime: '8 min read',
+    date: 'July 2026',
+    featured: false
   },
   {
-    id: 4,
-    category: 'Customer Story',
-    title: 'Hyperscale Data Center Achieves PUE 1.12 in Desert Climate',
-    summary: 'Custom YORK® magnetic-bearing chillers and direct liquid cooling enable 99.999% uptime with industry-record energy efficiency.',
-    image: '/images/jci-solutions.png',
-    date: 'May 2026',
+    id: 'iaq-wellness',
+    category: 'Industry Guide',
+    title: 'Optimizing Indoor Air Quality (IAQ) for Commercial Campuses',
+    summary: 'A comprehensive guide to dynamic ventilation setpoints, HEPA filtration modulation, and occupant wellness certifications.',
+    image: '/images/jci-insight.png',
     readTime: '5 min read',
-    icon: <Award className="w-4 h-4 text-aqua" />
+    date: 'July 2026',
+    featured: false
+  },
+  {
+    id: 'metasys-cyber',
+    category: 'Cybersecurity',
+    title: 'Securing Building Automation Systems against Zero-Day Threats',
+    summary: 'Best practices for ISO 27001 compliance, encrypted BACnet/IP communications, and automated patch management.',
+    image: '/images/jci-solutions.png',
+    readTime: '7 min read',
+    date: 'June 2026',
+    featured: false
   }
 ]
 
-export default function InsightsPage() {
-  const [filter, setFilter] = useState('All Articles')
-  const carouselRef = useRef<HTMLDivElement>(null)
+export default function LightInsightsPage() {
+  const [carouselStep, setCarouselStep] = useState(0)
+  const featuredArticle = insightsArticles.find((a) => a.featured) || insightsArticles[0]
 
-  const filteredData = filter === 'All Articles'
-    ? insightsData
-    : insightsData.filter((item) => item.category === filter)
-
-  // Single card step carousel controls
-  const scrollNext = () => {
-    if (carouselRef.current) {
-      const firstCard = carouselRef.current.querySelector('.insight-slide-card') as HTMLElement
-      if (firstCard) {
-        const cardWidth = firstCard.offsetWidth + 28
-        carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' })
-      }
-    }
+  const nextStep = () => {
+    setCarouselStep((prev) => (prev + 1) % insightsArticles.length)
   }
 
-  const scrollPrev = () => {
-    if (carouselRef.current) {
-      const firstCard = carouselRef.current.querySelector('.insight-slide-card') as HTMLElement
-      if (firstCard) {
-        const cardWidth = firstCard.offsetWidth + 28
-        carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' })
-      }
-    }
+  const prevStep = () => {
+    setCarouselStep((prev) => (prev - 1 + insightsArticles.length) % insightsArticles.length)
   }
 
   return (
-    <div className="min-h-screen bg-[#030e1a] text-white">
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-[#09253d] to-[#030e1a] border-b border-white/10">
-        <div className="container-wide relative z-10">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">KNOWLEDGE & MEDIA HUB</span>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white mt-3 mb-4 leading-tight">
-            Building Insights & Customer Stories
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
-            Discover how leading global enterprises achieve net-zero carbon targets and intelligent building operations.
-          </p>
+      {/* Hero Header (Light Theme) */}
+      <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
+        <div className="container-wide">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-4 border border-[#0066cc]/20">
+              <Sparkles size={14} />
+              BUILDING INSIGHTS & CASE STUDIES
+            </span>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
+              Intelligence for Sustainable Buildings.
+            </h1>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8">
+              Explore customer success stories, technical whitepapers, and industry research from Johnson Controls experts worldwide.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Featured Case Study Hero Card */}
-      <section className="py-12 bg-[#041221] border-b border-white/10">
+      {/* Featured Spotlight Section (Light Card) */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="container-wide">
-          <div className="bg-[#06192d] border border-white/15 rounded-2xl overflow-hidden shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12">
-              <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 bg-aqua/10 text-aqua text-xs font-bold rounded-full border border-aqua/30 uppercase">
-                      FEATURED CASE STUDY
-                    </span>
-                    <span className="text-xs text-white/50">• August 2026</span>
-                  </div>
-
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">
-                    Dubai DEWA HQ: World’s Largest Net-Zero Government Building
-                  </h2>
-
-                  <p className="text-white/80 text-sm leading-relaxed mb-6">
-                    Integrating over 10,000 smart building sensors into OpenBlue™ Enterprise Manager, achieving zero net carbon emissions and 100% solar power balance.
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4 mb-8 p-4 bg-[#030e1a]/70 rounded-xl border border-white/10">
-                    <div>
-                      <strong className="text-2xl font-extrabold text-aqua block">100%</strong>
-                      <span className="text-[11px] text-white/60 uppercase">Renewable Solar Balance</span>
-                    </div>
-                    <div>
-                      <strong className="text-2xl font-extrabold text-aqua block">10,000+</strong>
-                      <span className="text-[11px] text-white/60 uppercase">Smart Connected Sensors</span>
-                    </div>
-                  </div>
+          <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-[0_4px_30px_rgba(0,0,0,0.04)]">
+            <span className="text-xs font-bold text-[#0066cc] uppercase tracking-wider block mb-4">FEATURED CASE STUDY SPOTLIGHT</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7">
+                <span className="px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-3 inline-block">
+                  {featuredArticle.category}
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] mb-4 leading-tight">
+                  {featuredArticle.title}
+                </h2>
+                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                  {featuredArticle.summary}
+                </p>
+                <div className="flex items-center gap-6 text-xs text-slate-500 font-medium mb-8">
+                  <span className="flex items-center gap-1.5">
+                    <Clock size={14} className="text-[#0066cc]" /> {featuredArticle.readTime}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Award size={14} className="text-[#0066cc]" /> Dubai DEWA HQ
+                  </span>
                 </div>
-
-                <div>
-                  <Link href="/contact" className="button button-primary text-xs px-6 py-3 inline-flex items-center gap-2">
-                    <span>Read Full Case Study</span>
-                    <ArrowUpRight size={14} />
-                  </Link>
-                </div>
+                <Link href="/contact" className="button button-primary px-6 py-3 text-xs inline-flex items-center gap-2">
+                  <span>Read Full Case Study</span>
+                  <ArrowRight size={14} />
+                </Link>
               </div>
-
-              <div className="lg:col-span-5 relative min-h-[320px] lg:min-h-full">
-                <Image
-                  src="/images/jci-insight.png"
-                  alt="Dubai DEWA HQ"
-                  fill
-                  className="object-cover"
-                />
+              <div className="lg:col-span-5 relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                <Image src={featuredArticle.image} alt={featuredArticle.title} fill className="object-cover" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Filter Tabs & Single-Card Step Carousel */}
-      <section className="py-16 bg-[#030e1a]">
+      {/* Step Carousel Slider Section (Light Cards) */}
+      <section className="py-20 bg-[#f8fafc]">
         <div className="container-wide">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {['All Articles', 'Customer Stories', 'Whitepapers', 'Press Releases'].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`filter-tab-btn ${filter === cat ? 'filter-tab-active' : ''}`}
-                >
-                  {cat}
-                </button>
-              ))}
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">EXPERT WHITEPAPERS</span>
+              <h2 className="text-3xl font-extrabold text-[#0f172a] mt-1">Latest Articles & Research</h2>
             </div>
-
-            {/* Single Card Carousel Controls */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={scrollPrev}
-                className="carousel-nav-btn p-2.5 rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white transition-colors"
-                aria-label="Previous article"
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={prevStep} 
+                className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors shadow-sm"
+                aria-label="Previous Article"
               >
                 <ChevronLeft size={18} />
               </button>
-              <button
-                onClick={scrollNext}
-                className="carousel-nav-btn p-2.5 rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white transition-colors"
-                aria-label="Next article"
+              <button 
+                onClick={nextStep} 
+                className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center justify-center hover:border-[#0066cc] hover:text-[#0066cc] transition-colors shadow-sm"
+                aria-label="Next Article"
               >
                 <ChevronRight size={18} />
               </button>
             </div>
           </div>
 
-          {/* Carousel Track */}
-          <div ref={carouselRef} className="insights-carousel-track flex gap-7 overflow-x-auto scroll-smooth pb-6 scrollbar-none">
-            {filteredData.map((item) => (
-              <div key={item.id} className="insight-slide-card flex-none w-[340px] sm:w-[380px] bg-[#06192d] border border-white/15 rounded-xl overflow-hidden hover:border-aqua transition-all">
-                <div className="relative h-48 w-full">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
-                  <span className="absolute top-3 left-3 bg-[#030e1a]/80 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-aqua border border-white/15 flex items-center gap-1.5">
-                    {item.icon}
-                    {item.category}
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {insightsArticles.map((art, idx) => (
+              <div 
+                key={art.id} 
+                className={`bg-white border rounded-3xl p-6 shadow-sm transition-all duration-300 ${
+                  idx === carouselStep ? 'border-[#0066cc] ring-2 ring-[#0066cc]/20' : 'border-slate-200/90'
+                }`}
+              >
+                <div className="relative h-48 w-full rounded-2xl overflow-hidden mb-6 border border-slate-200 bg-slate-100">
+                  <Image src={art.image} alt={art.title} fill className="object-cover" />
                 </div>
-
-                <div className="p-6">
-                  <div className="flex justify-between items-center text-[11px] text-white/50 mb-2">
-                    <span>{item.date}</span>
-                    <span>{item.readTime}</span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-white mb-2 leading-snug hover:text-aqua transition-colors">{item.title}</h3>
-                  <p className="text-xs text-white/70 leading-relaxed mb-4">{item.summary}</p>
-
-                  <Link href="/contact" className="text-xs font-bold text-aqua hover:underline inline-flex items-center gap-1">
-                    <span>Read Article</span>
-                    <ArrowUpRight size={14} />
-                  </Link>
+                <span className="text-[11px] font-bold text-[#0066cc] uppercase tracking-wider block mb-2">{art.category}</span>
+                <h3 className="text-lg font-bold text-[#0f172a] mb-2 leading-snug">{art.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">{art.summary}</p>
+                <div className="flex items-center justify-between text-[11px] text-slate-400 font-medium pt-4 border-t border-slate-100">
+                  <span>{art.readTime}</span>
+                  <Link href="/contact" className="text-[#0066cc] font-bold hover:underline">Read →</Link>
                 </div>
               </div>
             ))}

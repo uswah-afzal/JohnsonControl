@@ -83,9 +83,9 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
   const activeItem = items[activeIndex]
 
   return (
-    <div className="orbit-section-wrapper relative py-12 overflow-hidden">
+    <div className="orbit-section-wrapper relative py-12 overflow-hidden bg-slate-50 border-y border-slate-200">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-aqua/10 via-sky-600/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-[#0066cc]/5 via-sky-200/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-wide relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -93,25 +93,21 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
           {/* Left Column: Interactive Circular Orbit Motion */}
           <div className="lg:col-span-6 flex justify-center items-center relative min-h-[440px] sm:min-h-[500px]">
             {/* Outer Orbit Track */}
-            <div className="orbit-track relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full border border-white/15 flex justify-center items-center">
+            <div className="orbit-track relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full border border-slate-300 flex justify-center items-center">
               
               {/* Outer Rotating Dotted Ring */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-aqua/30 animate-[spin_60s_linear_infinite]" />
+              <div className="absolute inset-0 rounded-full border border-dashed border-[#0066cc]/30 animate-[spin_60s_linear_infinite]" />
 
               {/* Central Core Sphere */}
-              <div className="orbit-center-core w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-gradient-to-br from-[#09253d] to-[#041221] border border-aqua/40 flex flex-col items-center justify-center p-3 text-center shadow-[0_0_40px_rgba(118,227,212,0.2)]">
-                <span className="text-[10px] font-bold tracking-widest text-aqua uppercase">JCI ORBIT</span>
-                <strong className="text-xs sm:text-sm font-bold text-white mt-1 leading-tight">{activeItem.title.split('&')[0]}</strong>
-                <span className="text-[9px] text-white/60 mt-0.5">{activeIndex + 1} of {items.length}</span>
+              <div className="orbit-center-core w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-white border border-slate-300 flex flex-col items-center justify-center p-3 text-center shadow-md">
+                <span className="text-[10px] font-extrabold tracking-widest text-[#0066cc] uppercase">JCI ORBIT</span>
+                <strong className="text-xs sm:text-sm font-extrabold text-[#0f172a] mt-1 leading-tight">{activeItem.title.split('&')[0]}</strong>
+                <span className="text-[9px] text-slate-500 font-medium mt-0.5">{activeIndex + 1} of {items.length}</span>
               </div>
 
               {/* Orbit Satellite Nodes */}
               {items.map((item, idx) => {
                 const angle = (idx * (360 / items.length) - 90) * (Math.PI / 180)
-                const radius = 160 // px for 320px container (desktop scale adjust in CSS)
-                const radiusSm = 210 // px for 420px container
-                
-                // Active node calculation
                 const isActive = idx === activeIndex
 
                 return (
@@ -119,10 +115,10 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
                     key={item.id}
                     onClick={() => setActiveIndex(idx)}
                     onMouseEnter={() => setActiveIndex(idx)}
-                    className={`orbit-node absolute w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
+                    className={`orbit-node absolute w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
                       isActive
-                        ? 'bg-aqua text-navy scale-125 border-2 border-white shadow-[0_0_25px_rgba(118,227,212,0.8)] z-20'
-                        : 'bg-[#09253d] text-white/80 border border-white/20 hover:border-aqua hover:text-aqua hover:scale-110 z-10'
+                        ? 'bg-[#0066cc] text-white scale-125 border-2 border-white shadow-[0_0_20px_rgba(0,102,204,0.4)] z-20'
+                        : 'bg-white text-slate-600 border border-slate-300 hover:border-[#0066cc] hover:text-[#0066cc] hover:scale-110 z-10'
                     }`}
                     style={{
                       transform: `translate(${Math.cos(angle) * 150}px, ${Math.sin(angle) * 150}px) ${isActive ? 'scale(1.25)' : 'scale(1)'}`,
@@ -138,32 +134,32 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
 
           {/* Right Column: Dynamic Active Industry Content Card */}
           <div className="lg:col-span-6">
-            <div className="orbit-content-card bg-[#061c30]/80 border border-white/15 backdrop-blur-xl rounded-2xl p-8 sm:p-10 shadow-2xl transition-all duration-500">
+            <div className="orbit-content-card bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-[0_4px_30px_rgba(0,0,0,0.04)] transition-all duration-500">
               
               <div className="flex items-center gap-3 mb-4">
-                <span className="p-2.5 bg-aqua/10 text-aqua border border-aqua/30 rounded-lg">
+                <span className="p-2.5 bg-[#0066cc]/10 text-[#0066cc] border border-[#0066cc]/20 rounded-2xl">
                   {activeItem.icon}
                 </span>
                 <div>
-                  <span className="text-xs font-semibold tracking-wider text-aqua uppercase">Industry Expertise</span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">{activeItem.title}</h3>
+                  <span className="text-xs font-bold tracking-wider text-[#0066cc] uppercase">Industry Expertise</span>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a] leading-tight">{activeItem.title}</h3>
                 </div>
               </div>
 
-              <p className="text-aqua font-medium text-base mb-4">{activeItem.tagline}</p>
+              <p className="text-[#0066cc] font-semibold text-sm mb-4">{activeItem.tagline}</p>
               
-              <p className="text-white/80 text-sm leading-relaxed mb-6">
+              <p className="text-slate-600 text-sm leading-relaxed mb-6">
                 {activeItem.description}
               </p>
 
               {/* Dynamic Callout Metric */}
-              <div className="bg-[#030e1a]/70 border border-white/10 rounded-xl p-5 mb-8 flex items-center justify-between">
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-8 flex items-center justify-between">
                 <div>
-                  <strong className="text-3xl font-extrabold text-white block">{activeItem.stats}</strong>
-                  <span className="text-xs text-white/70 uppercase tracking-wide">{activeItem.statLabel}</span>
+                  <strong className="text-3xl font-extrabold text-[#0f172a] block">{activeItem.stats}</strong>
+                  <span className="text-xs text-slate-500 font-medium uppercase tracking-wide">{activeItem.statLabel}</span>
                 </div>
-                <div className="h-8 w-[1px] bg-white/15" />
-                <span className="text-xs font-semibold text-aqua bg-aqua/10 px-3 py-1.5 rounded-full border border-aqua/20">
+                <div className="h-8 w-[1px] bg-slate-200" />
+                <span className="text-xs font-bold text-[#0066cc] bg-[#0066cc]/10 px-3 py-1.5 rounded-full border border-[#0066cc]/20">
                   OpenBlue™ Connected
                 </span>
               </div>
@@ -171,7 +167,7 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
               <div className="flex items-center justify-between">
                 <Link
                   href={activeItem.link}
-                  className="button button-primary inline-flex items-center gap-2 text-sm px-6 py-3"
+                  className="button button-primary inline-flex items-center gap-2 text-xs px-6 py-3"
                 >
                   <span>Explore {activeItem.title}</span>
                   <ArrowRight size={16} />
@@ -183,7 +179,7 @@ export default function CircularOrbit({ items = defaultOrbitItems }: { items?: O
                       key={i}
                       onClick={() => setActiveIndex(i)}
                       className={`h-2 rounded-full transition-all ${
-                        i === activeIndex ? 'w-8 bg-aqua' : 'w-2 bg-white/20 hover:bg-white/40'
+                        i === activeIndex ? 'w-8 bg-[#0066cc]' : 'w-2 bg-slate-300 hover:bg-slate-400'
                       }`}
                       aria-label={`Go to item ${i + 1}`}
                     />
