@@ -190,67 +190,63 @@ button:focus-visible, a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-radius: 999px;
-  padding: 13px 26px;
-  font-size: 14px;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.25s ease;
+  border-radius: 12px;
+  transition: all 0.2s ease;
   cursor: pointer;
-  border: 1px solid #ffffff;
+  border: 2px solid #0f172a;
   background: #ffffff;
-  color: #000000;
+  color: #0f172a;
   box-shadow: none !important;
 }
 
 .button:hover {
-  background: #000000;
+  background: #0f172a;
   color: #ffffff;
-  border-color: #000000;
-  transform: translateY(-2px);
+  border-color: #0f172a;
+  transform: translateY(-1px);
   box-shadow: none !important;
 }
 
 .button-small {
-  padding: 9px 18px;
-  font-size: 13px;
+  padding: 8px 16px;
+  font-size: 12px;
   background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  color: #0f172a;
+  border: 2px solid #0f172a;
 }
 
 .button-small:hover {
-  background: #000000;
+  background: #0f172a;
   color: #ffffff;
-  border-color: #000000;
+  border-color: #0f172a;
 }
 
 .button-primary {
   background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  color: #0f172a;
+  border: 2px solid #0f172a;
   box-shadow: none !important;
 }
 
 .button-primary:hover {
-  background: #000000;
+  background: #0f172a;
   color: #ffffff;
-  border-color: #000000;
+  border-color: #0f172a;
   box-shadow: none !important;
 }
 
 .button-navy {
   background: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
+  color: #0f172a;
+  border: 2px solid #0f172a;
   box-shadow: none !important;
 }
 
 .button-navy:hover {
-  background: #000000;
+  background: #0f172a;
   color: #ffffff;
-  border-color: #000000;
+  border-color: #0f172a;
   box-shadow: none !important;
 }
 
