@@ -43,10 +43,7 @@ export default function AboutPage() {
       <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-4 border border-[#0066cc]/20">
-              <Sparkles size={14} />
-              OUR HERITAGE & MISSION
-            </span>
+            <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase block mb-2">OUR HERITAGE & MISSION</span>
             <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
               Over 140 Years of Building Innovation.
             </h1>

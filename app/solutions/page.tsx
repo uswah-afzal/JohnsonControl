@@ -36,10 +36,7 @@ export default function MinimalSolutionsPage() {
       <section className="bg-white border-b border-slate-200/80 py-12 sm:py-16 relative">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-3 border border-[#0066cc]/20">
-              <Sparkles size={14} />
-              NET ZERO & SUSTAINABILITY
-            </span>
+            <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase block mb-2">NET ZERO & SUSTAINABILITY</span>
             <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-3">
               Building Solutions for a Sustainable Future.
             </h1>
