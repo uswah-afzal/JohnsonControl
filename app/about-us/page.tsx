@@ -5,58 +5,58 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import CountUpNumber from '@/components/CountUpNumber'
-import { Globe, Users, Award, ShieldCheck, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react'
+import { Globe, Users, Award, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const timelineEvents = [
   {
     year: '1885',
-    title: 'Electric Tele-Thermostat Invention',
-    desc: 'Professor Warren S. Johnson patents the first electric room thermostat, laying the foundation for modern HVAC building automation.'
+    title: 'Electric Thermostat Invention',
+    desc: 'Patent for first electric room thermostat by Warren Johnson.'
   },
   {
     year: '1972',
-    title: 'First Computerized Building Control',
-    desc: 'Launches the JC/80 computerized building automation system, revolutionizing energy management for large commercial complexes.'
+    title: 'JC/80 Building Control',
+    desc: 'First computerized building automation system launched.'
   },
   {
     year: '2004',
-    title: 'Metasys® Building Automation',
-    desc: 'Introduces Metasys®, connecting HVAC, lighting, and security onto IP networks for unified facility management.'
+    title: 'Metasys® Enterprise IP',
+    desc: 'Unified HVAC, lighting, and security IP integration.'
   },
   {
     year: '2020',
-    title: 'OpenBlue™ AI Platform Launch',
-    desc: 'Unveils OpenBlue™ AI, combining IoT sensor data with predictive cloud algorithms for autonomous net-zero building operations.'
+    title: 'OpenBlue™ AI Launch',
+    desc: 'Autonomous AI operating system for net-zero buildings.'
   },
   {
     year: '2026',
-    title: 'Global Net-Zero Decarbonization Leader',
-    desc: 'Serving 150+ countries with guaranteed energy performance contracts and AI-powered zero-carbon building infrastructure.'
+    title: 'Global Net-Zero Leader',
+    desc: 'Serving 150+ countries with zero-carbon solutions.'
   }
 ]
 
-export default function AboutPage() {
+export default function RedesignedAboutPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       <Navbar />
 
       {/* Hero Header (Light Theme) */}
-      <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
+      <section className="bg-white border-b border-slate-200/80 py-12 sm:py-16 relative">
         <div className="container-wide">
           <div className="max-w-3xl">
             <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase block mb-2">OUR HERITAGE & MISSION</span>
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-3">
               Over 140 Years of Building Innovation.
             </h1>
-            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8">
-              At Johnson Controls, we transform the environments where people live, work, learn, and play—making spaces healthier, safer, and more sustainable.
+            <p className="text-slate-600 text-sm sm:text-base font-medium leading-normal">
+              At Johnson Controls, we transform the environments where people live, work, learn, and play.
             </p>
           </div>
         </div>
       </section>
 
       {/* Global Impact Metrics */}
-      <section className="py-16 bg-slate-50 border-b border-slate-200">
+      <section className="py-12 bg-slate-50 border-b border-slate-200">
         <div className="container-wide">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
@@ -86,20 +86,28 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 140+ Years Timeline Track */}
-      <section className="py-20 bg-[#f8fafc]">
-        <div className="container-wide mb-10">
+      {/* 140+ Years Timeline Track (Responsive & No Text Overflow) */}
+      <section className="py-16 bg-[#f8fafc]">
+        <div className="container-wide mb-8 text-center max-w-xl mx-auto">
           <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">HISTORICAL TIMELINE</span>
-          <h2 className="text-3xl font-extrabold text-[#0f172a] mt-2">140 Years of Building Automation Firsts</h2>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0f172a] mt-1">140 Years of Building Automation Firsts</h2>
         </div>
 
         <div className="container-wide">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {timelineEvents.map((ev) => (
-              <div key={ev.year} className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-                <span className="text-3xl font-extrabold text-[#0066cc] block mb-2">{ev.year}</span>
-                <h3 className="text-base font-bold text-[#0f172a] mb-2">{ev.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{ev.desc}</p>
+              <div 
+                key={ev.year} 
+                className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-sm min-w-0 flex flex-col justify-between hover:shadow-md hover:border-[#0066cc] transition-all"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-2xl font-extrabold text-[#0066cc]">{ev.year}</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0066cc]" />
+                  </div>
+                  <h3 className="text-sm font-extrabold text-[#0f172a] mb-1.5 leading-snug break-words">{ev.title}</h3>
+                  <p className="text-xs text-slate-600 font-medium leading-relaxed break-words">{ev.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -114,7 +122,7 @@ export default function AboutPage() {
             Pioneering Sustainability for Future Generations
           </h2>
           <p className="text-slate-600 text-sm mb-8 leading-relaxed">
-            We are committed to achieving net-zero Scope 1 and Scope 2 carbon emissions across our global manufacturing and office operations by 2040.
+            We are committed to achieving net-zero Scope 1 and Scope 2 carbon emissions across our global operations by 2040.
           </p>
           <Link href="/solutions" className="button button-primary px-8 py-3.5 text-xs inline-flex items-center gap-2">
             <span>Explore Net-Zero Solutions</span>
