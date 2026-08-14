@@ -89,7 +89,7 @@ export default function Navbar() {
               <Search size={18} />
             </button>
 
-            <Link href="/contact" className="bg-white border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white font-bold rounded-xl flex items-center gap-1.5 text-xs px-5 py-2.5 transition-all duration-200">
+            <Link href="/contact" className="get-support-btn font-bold rounded-xl flex items-center gap-1.5 text-xs px-5 py-2.5">
               <span>Get Support</span>
               <ArrowUpRight size={14} />
             </Link>

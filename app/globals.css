@@ -186,68 +186,39 @@ button:focus-visible, a:focus-visible {
   transform: scale(1.08);
 }
 
-.button {
+.button, .button-primary, .button-navy, .get-support-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   border-radius: 12px;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease-in-out !important;
   cursor: pointer;
-  border: 2px solid #0f172a;
-  background: #ffffff;
-  color: #0f172a;
+  border: 2px solid #0f172a !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
   box-shadow: none !important;
 }
 
-.button:hover {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
-  transform: translateY(-1px);
-  box-shadow: none !important;
+.button span, .button svg,
+.button-primary span, .button-primary svg,
+.button-navy span, .button-navy svg,
+.get-support-btn span, .get-support-btn svg {
+  color: #0f172a !important;
+  transition: color 0.2s ease-in-out !important;
 }
 
-.button-small {
-  padding: 8px 16px;
-  font-size: 12px;
-  background: #ffffff;
-  color: #0f172a;
-  border: 2px solid #0f172a;
+.button:hover, .button-primary:hover, .button-navy:hover, .get-support-btn:hover {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
 }
 
-.button-small:hover {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
-}
-
-.button-primary {
-  background: #ffffff;
-  color: #0f172a;
-  border: 2px solid #0f172a;
-  box-shadow: none !important;
-}
-
-.button-primary:hover {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
-  box-shadow: none !important;
-}
-
-.button-navy {
-  background: #ffffff;
-  color: #0f172a;
-  border: 2px solid #0f172a;
-  box-shadow: none !important;
-}
-
-.button-navy:hover {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: #0f172a;
-  box-shadow: none !important;
+.button:hover span, .button:hover svg,
+.button-primary:hover span, .button-primary:hover svg,
+.button-navy:hover span, .button-navy:hover svg,
+.get-support-btn:hover span, .get-support-btn:hover svg {
+  color: #ffffff !important;
 }
 
 .menu-toggle {
