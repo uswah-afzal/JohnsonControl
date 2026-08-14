@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import CountUpNumber from '@/components/CountUpNumber'
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
@@ -122,22 +123,22 @@ export default function LightHomePage() {
         <div className="container-wide">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
-              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">140+</strong>
+              <CountUpNumber end={140} suffix="+" className="text-4xl font-extrabold text-[#0f172a] block mb-1" />
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Years of Innovation (Since 1885)</span>
             </div>
 
             <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
-              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">100,000+</strong>
+              <CountUpNumber end={100000} suffix="+" className="text-4xl font-extrabold text-[#0f172a] block mb-1" />
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Global Employees & Engineers</span>
             </div>
 
             <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
-              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">150+</strong>
+              <CountUpNumber end={150} suffix="+" className="text-4xl font-extrabold text-[#0f172a] block mb-1" />
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Countries Served Worldwide</span>
             </div>
 
             <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
-              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">$6B+</strong>
+              <CountUpNumber end={6} prefix="$" suffix="B+" className="text-4xl font-extrabold text-[#0f172a] block mb-1" />
               <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Customer Decarbonization Funded</span>
             </div>
           </div>
