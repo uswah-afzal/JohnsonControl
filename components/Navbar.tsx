@@ -35,26 +35,11 @@ export default function Navbar() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
-    <div className="sticky top-0 z-50">
-      {/* Utility Top Bar (Collapses smoothly on scroll) */}
-      <div className={`utility-bar transition-all duration-300 overflow-hidden ${
-        isScrolled ? 'max-h-0 opacity-0 py-0 border-none' : 'max-h-10 opacity-100 py-1.5'
-      }`}>
+    <div className="relative z-50 bg-[#030e1a] border-b border-white/10">
+      {/* Utility Top Bar */}
+      <div className="utility-bar border-b border-white/10 py-1.5">
         <div className="container-wide flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-[11px] font-semibold tracking-wider text-aqua uppercase">GLOBAL LEADER IN SMART BUILDINGS</span>
@@ -70,14 +55,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Header Nav (Compresses height & padding smoothly on scroll) */}
-      <header className={`site-header backdrop-blur-2xl transition-all duration-300 border-b border-white/10 ${
-        isScrolled ? 'bg-[#030e1a]/95 py-2 shadow-xl' : 'bg-[#030e1a]/85 py-3'
-      }`}>
-        <div className={`container-wide flex items-center justify-between transition-all duration-300 ${
-          isScrolled ? 'h-[54px]' : 'h-[72px]'
-        }`}>
-          <BrandLogo compact={isScrolled} />
+      {/* Main Header Nav */}
+      <header className="site-header py-3 bg-[#030e1a]">
+        <div className="container-wide flex h-[72px] items-center justify-between">
+          <BrandLogo />
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
             {navLinks.map((link) => {
@@ -105,12 +86,10 @@ export default function Navbar() {
               className="search-button p-2 text-white/80 hover:text-white transition-colors"
               aria-label="Search site"
             >
-              <Search size={isScrolled ? 16 : 18} />
+              <Search size={18} />
             </button>
 
-            <Link href="/contact" className={`button button-primary flex items-center gap-1.5 transition-all duration-300 ${
-              isScrolled ? 'text-[11px] px-4 py-1.5' : 'text-xs px-5 py-2.5'
-            }`}>
+            <Link href="/contact" className="button button-primary flex items-center gap-1.5 text-xs px-5 py-2.5">
               <span>Get Support</span>
               <ArrowUpRight size={14} />
             </Link>
