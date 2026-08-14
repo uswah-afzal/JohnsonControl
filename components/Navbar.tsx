@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -37,26 +37,26 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
 
   return (
-    <div className="relative z-50 bg-[#030e1a] border-b border-white/10">
-      {/* Utility Top Bar */}
-      <div className="utility-bar border-b border-white/10 py-1.5">
+    <div className="relative z-50 bg-white border-b border-slate-200">
+      {/* Utility Top Bar (Clean Light Slate) */}
+      <div className="bg-[#f8fafc] border-b border-slate-200/80 py-1.5 text-xs text-slate-600">
         <div className="container-wide flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-semibold tracking-wider text-aqua uppercase">GLOBAL LEADER IN SMART BUILDINGS</span>
+            <span className="text-[11px] font-bold tracking-wider text-[#0066cc] uppercase">GLOBAL LEADER IN SMART BUILDINGS</span>
           </div>
-          <div className="hidden items-center gap-6 md:flex">
-            <Link href="/contact" className="hover:text-aqua transition-colors">Contact an Expert</Link>
-            <Link href="/about-us" className="hover:text-aqua transition-colors">Investors</Link>
-            <Link href="/insights" className="hover:text-aqua transition-colors">Media & News</Link>
-            <button className="region-button" aria-label="Select Region">
-              <Globe2 size={14} /> US | EN <ChevronDown size={13} />
+          <div className="hidden items-center gap-6 md:flex font-medium text-slate-600">
+            <Link href="/contact" className="hover:text-[#0066cc] transition-colors">Contact an Expert</Link>
+            <Link href="/about-us" className="hover:text-[#0066cc] transition-colors">Investors</Link>
+            <Link href="/insights" className="hover:text-[#0066cc] transition-colors">Media & News</Link>
+            <button className="flex items-center gap-1.5 font-semibold text-slate-700 hover:text-[#0066cc] transition-colors" aria-label="Select Region">
+              <Globe2 size={13} /> US | EN <ChevronDown size={12} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Main Header Nav */}
-      <header className="site-header py-3 bg-[#030e1a]">
+      {/* Main Header Nav (Pure White Theme) */}
+      <header className="py-3 bg-white">
         <div className="container-wide flex h-[72px] items-center justify-between">
           <BrandLogo />
 
@@ -67,13 +67,13 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`nav-link relative py-1 text-xs sm:text-sm font-medium transition-all duration-200 ${
-                    isActive ? 'text-aqua font-semibold' : 'text-white/80 hover:text-white'
+                  className={`relative py-1 text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                    isActive ? 'text-[#0066cc]' : 'text-slate-700 hover:text-[#0066cc]'
                   }`}
                 >
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-aqua rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#0066cc] rounded-full" />
                   )}
                 </Link>
               )
@@ -83,13 +83,13 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 lg:flex">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="search-button p-2 text-white/80 hover:text-white transition-colors"
+              className="p-2 text-slate-600 hover:text-[#0066cc] transition-colors"
               aria-label="Search site"
             >
               <Search size={18} />
             </button>
 
-            <Link href="/contact" className="button button-primary flex items-center gap-1.5 text-xs px-5 py-2.5">
+            <Link href="/contact" className="bg-[#0066cc] hover:bg-[#0f172a] text-white font-bold rounded-xl flex items-center gap-1.5 text-xs px-5 py-2.5 transition-colors">
               <span>Get Support</span>
               <ArrowUpRight size={14} />
             </Link>
@@ -98,27 +98,27 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden p-2 text-slate-800"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
-        {/* Search Bar Slide Out */}
+        {/* Search Bar Slide Out (Light Slate) */}
         {searchOpen && (
-          <div className="bg-[#06192d] border-t border-b border-white/15 py-3 px-6 animate-in slide-in-from-top duration-200">
+          <div className="bg-slate-50 border-t border-b border-slate-200 py-3 px-6 animate-in slide-in-from-top duration-200">
             <div className="container-wide flex items-center gap-3">
-              <Search size={18} className="text-aqua" />
+              <Search size={18} className="text-[#0066cc]" />
               <input
                 type="text"
                 placeholder="Search products, net-zero solutions, whitepapers..."
-                className="w-full bg-transparent text-white placeholder-white/50 focus:outline-none text-sm"
+                className="w-full bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none text-sm font-medium"
                 autoFocus
               />
               <button
                 onClick={() => setSearchOpen(false)}
-                className="text-xs uppercase tracking-wider text-white/60 hover:text-white"
+                className="text-xs uppercase font-bold tracking-wider text-slate-500 hover:text-slate-900"
               >
                 Close
               </button>
@@ -126,17 +126,17 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Drawer (Light Slate) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#030e1a] border-b border-white/10 px-6 py-6 space-y-4">
+          <div className="lg:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl">
             <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-base font-medium py-2 border-b border-white/5 ${
-                    pathname === link.href ? 'text-aqua font-bold' : 'text-white/80'
+                  className={`text-base font-semibold py-2 border-b border-slate-100 ${
+                    pathname === link.href ? 'text-[#0066cc]' : 'text-slate-700'
                   }`}
                 >
                   {link.name}
@@ -147,7 +147,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="button button-primary text-center py-3"
+                className="bg-[#0066cc] text-white font-bold text-center py-3 rounded-xl"
               >
                 Contact an Expert
               </Link>
