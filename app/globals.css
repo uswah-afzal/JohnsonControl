@@ -1579,6 +1579,103 @@ em {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   Orbit Motion & Sub-Page Custom Components
+   ========================================================================== */
+.orbit-section-wrapper {
+  background: radial-gradient(circle at center, #09253d 0%, #030e1a 100%);
+}
+
+.filter-tab-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.25s ease;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+.filter-tab-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.filter-tab-active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  font-weight: 700;
+}
+
+.product-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--aqua);
+  transform: translateY(-4px);
+}
+
+.calculator-card {
+  background: linear-gradient(135deg, rgba(9, 37, 61, 0.9) 0%, rgba(3, 14, 26, 0.9) 100%);
+  border: 1px solid rgba(118, 227, 212, 0.3);
+  backdrop-filter: blur(16px);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+
+.timeline-track {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding-bottom: 24px;
+  scroll-snap-type: x mandatory;
+}
+
+.timeline-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline-track::-webkit-scrollbar-thumb {
+  background: rgba(118, 227, 212, 0.3);
+  border-radius: 999px;
+}
+
+.timeline-item {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  border-color: var(--aqua);
+  background: rgba(118, 227, 212, 0.05);
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .impact-grid, .performance-layout, .platform-grid, .jci-hub-grid, .footer-top {
