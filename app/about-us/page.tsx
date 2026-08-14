@@ -4,7 +4,7 @@ import React from 'react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
-import { Globe, Users, Award, ShieldCheck, ArrowRight } from 'lucide-react'
+import { Globe, Users, Award, ShieldCheck, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react'
 
 const timelineEvents = [
   {
@@ -36,67 +36,72 @@ const timelineEvents = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#030e1a] text-white">
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       <Navbar />
 
-      {/* Hero Header */}
-      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-[#09253d] to-[#030e1a] border-b border-white/10">
-        <div className="container-wide relative z-10">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">OUR HERITAGE & MISSION</span>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white mt-3 mb-4 leading-tight">
-            Over 140 Years of Building Innovation
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
-            At Johnson Controls, we transform the environments where people live, work, learn, and play—making spaces healthier, safer, and more sustainable.
-          </p>
+      {/* Hero Header (Light Theme) */}
+      <section className="bg-white border-b border-slate-200/80 py-16 sm:py-20 relative">
+        <div className="container-wide">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0066cc]/10 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-4 border border-[#0066cc]/20">
+              <Sparkles size={14} />
+              OUR HERITAGE & MISSION
+            </span>
+            <h1 className="text-4xl sm:text-6xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-4">
+              Over 140 Years of Building Innovation.
+            </h1>
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-8">
+              At Johnson Controls, we transform the environments where people live, work, learn, and play—making spaces healthier, safer, and more sustainable.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Global Impact Metrics */}
-      <section className="py-16 bg-[#041221] border-b border-white/10">
+      <section className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="container-wide">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl text-center">
-              <Award className="w-8 h-8 text-aqua mx-auto mb-3" />
-              <strong className="text-4xl font-extrabold text-white block mb-1">140+</strong>
-              <span className="text-xs text-white/60 uppercase tracking-wider">Years of Innovation (Since 1885)</span>
+            <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
+              <Award className="w-8 h-8 text-[#0066cc] mx-auto mb-3" />
+              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">140+</strong>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Years of Innovation (Since 1885)</span>
             </div>
 
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl text-center">
-              <Users className="w-8 h-8 text-aqua mx-auto mb-3" />
-              <strong className="text-4xl font-extrabold text-white block mb-1">100,000+</strong>
-              <span className="text-xs text-white/60 uppercase tracking-wider">Global Employees & Engineers</span>
+            <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
+              <Users className="w-8 h-8 text-[#0066cc] mx-auto mb-3" />
+              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">100,000+</strong>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Global Employees & Engineers</span>
             </div>
 
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl text-center">
-              <Globe className="w-8 h-8 text-aqua mx-auto mb-3" />
-              <strong className="text-4xl font-extrabold text-white block mb-1">150+</strong>
-              <span className="text-xs text-white/60 uppercase tracking-wider">Countries Served Worldwide</span>
+            <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
+              <Globe className="w-8 h-8 text-[#0066cc] mx-auto mb-3" />
+              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">150+</strong>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Countries Served Worldwide</span>
             </div>
 
-            <div className="bg-[#06192d] border border-white/15 p-6 rounded-xl text-center">
-              <ShieldCheck className="w-8 h-8 text-aqua mx-auto mb-3" />
-              <strong className="text-4xl font-extrabold text-white block mb-1">$6B+</strong>
-              <span className="text-xs text-white/60 uppercase tracking-wider">Customer Decarbonization Funded</span>
+            <div className="bg-white border border-slate-200 p-6 rounded-2xl text-center shadow-sm">
+              <ShieldCheck className="w-8 h-8 text-[#0066cc] mx-auto mb-3" />
+              <strong className="text-4xl font-extrabold text-[#0f172a] block mb-1">$6B+</strong>
+              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Customer Decarbonization Funded</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* 140+ Years Timeline Track */}
-      <section className="py-20 bg-[#030e1a]">
+      <section className="py-20 bg-[#f8fafc]">
         <div className="container-wide mb-10">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">HISTORICAL TIMELINE</span>
-          <h2 className="text-3xl font-extrabold text-white mt-2">140 Years of Building Automation Firsts</h2>
+          <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">HISTORICAL TIMELINE</span>
+          <h2 className="text-3xl font-extrabold text-[#0f172a] mt-2">140 Years of Building Automation Firsts</h2>
         </div>
 
         <div className="container-wide">
-          <div className="timeline-track">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {timelineEvents.map((ev) => (
-              <div key={ev.year} className="timeline-item">
-                <span className="text-3xl font-extrabold text-aqua block mb-2">{ev.year}</span>
-                <h3 className="text-lg font-bold text-white mb-2">{ev.title}</h3>
-                <p className="text-xs text-white/70 leading-relaxed">{ev.desc}</p>
+              <div key={ev.year} className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <span className="text-3xl font-extrabold text-[#0066cc] block mb-2">{ev.year}</span>
+                <h3 className="text-base font-bold text-[#0f172a] mb-2">{ev.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">{ev.desc}</p>
               </div>
             ))}
           </div>
@@ -104,13 +109,13 @@ export default function AboutPage() {
       </section>
 
       {/* ESG Commitment Callout */}
-      <section className="py-16 bg-[#06192d] border-t border-white/10">
+      <section className="py-16 bg-white border-t border-slate-200">
         <div className="container-wide text-center max-w-3xl mx-auto">
-          <span className="text-xs font-bold tracking-widest text-aqua uppercase">2040 NET-ZERO COMMITMENT</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+          <span className="text-xs font-bold tracking-widest text-[#0066cc] uppercase">2040 NET-ZERO COMMITMENT</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] mt-2 mb-4">
             Pioneering Sustainability for Future Generations
           </h2>
-          <p className="text-white/80 text-sm mb-8 leading-relaxed">
+          <p className="text-slate-600 text-sm mb-8 leading-relaxed">
             We are committed to achieving net-zero Scope 1 and Scope 2 carbon emissions across our global manufacturing and office operations by 2040.
           </p>
           <Link href="/solutions" className="button button-primary px-8 py-3.5 text-xs inline-flex items-center gap-2">

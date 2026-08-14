@@ -157,14 +157,14 @@ button:focus-visible, a:focus-visible {
   align-items: center;
   gap: 5px;
   font-size: 14px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  color: #334155;
   transition: color 0.25s ease, transform 0.2s ease;
   padding: 8px 0;
 }
 
 .site-header .nav-link:hover {
-  color: var(--aqua);
+  color: #0066cc;
   transform: translateY(-1px);
 }
 
